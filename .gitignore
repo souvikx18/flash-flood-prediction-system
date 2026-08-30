@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Environment variables / secrets
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# ML models
+*.pkl
+*.joblib
+*.h5
+*.keras
+*.onnx
+
+# Large datasets
+*.csv
+*.nc
+*.hdf
+*.hdf5
+*.tif
+*.tiff
+*.zip
+
+# Generated data
+data/processed/
+
+# Logs
+*.log
