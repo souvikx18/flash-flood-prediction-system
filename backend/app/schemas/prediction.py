@@ -1,32 +1,42 @@
+from datetime import datetime
 from pydantic import BaseModel, Field
 
 
 class PredictionRequest(BaseModel):
-    latitude: float = Field(..., ge=-90, le=90)
-    longitude: float = Field(..., ge=-180, le=180)
-
-    rainfall: float = Field(..., ge=0)
-    temperature: float
-    humidity: float = Field(..., ge=0, le=100)
-
-    forecast_hours: int = Field(
-        default=24,
-        ge=1,
-        le=72,
-    )
+    rainfall_mm_hr: float = Field(..., ge=0)
+    elevation_m: float
+    slope_degree: float = Field(..., ge=0)
+    rain_1h: float = Field(..., ge=0)
+    rain_3h: float = Field(..., ge=0)
+    rain_6h: float = Field(..., ge=0)
+    rain_12h: float = Field(..., ge=0)
+    rain_24h: float = Field(..., ge=0)
+    rainfall_change: float
 
 
 class PredictionResponse(BaseModel):
-    flood_probability: float = Field(
-        ...,
-        ge=0,
-        le=1,
-    )
-
+    prediction: int
+    flood_probability: float = Field(..., ge=0, le=1)
     risk_level: str
 
-    forecast_hours: int
 
-    latitude: float
+class PredictionHistoryResponse(BaseModel):
+    id: int
+    user_id: int
 
-    longitude: float
+    rainfall_mm_hr: float
+    elevation_m: float
+    slope_degree: float
+    rain_1h: float
+    rain_3h: float
+    rain_6h: float
+    rain_12h: float
+    rain_24h: float
+    rainfall_change: float
+
+    prediction: int
+    flood_probability: float
+    risk_level: str
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
