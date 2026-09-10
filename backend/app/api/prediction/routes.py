@@ -89,7 +89,7 @@ def prediction_history(
     limit: int = Query(
         default=50,
         ge=1,
-        le=100,
+        le=50,
     ),
     current_user_id: int = Depends(get_current_user_id),
     db: Session = Depends(get_db),

@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from sqlalchemy import DateTime, Float, ForeignKey, Integer, String
+from sqlalchemy import DateTime, Float, ForeignKey, Index, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.database.base import Base
@@ -8,6 +8,14 @@ from app.database.base import Base
 
 class Prediction(Base):
     __tablename__ = "predictions"
+
+    __table_args__ = (
+        Index(
+            "ix_predictions_user_created_at",
+            "user_id",
+            "created_at",
+        ),
+    )
 
     id: Mapped[int] = mapped_column(
         primary_key=True,
