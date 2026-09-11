@@ -10,6 +10,9 @@ from alembic import context
 from dotenv import load_dotenv
 from app.database.base import Base
 from app.models.user import User
+from app.models.district import District
+from app.models.location import Location
+from app.models.prediction import Prediction
 
 
 load_dotenv()

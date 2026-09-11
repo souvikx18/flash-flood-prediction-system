@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.exceptions import unexpected_error_handler
 
+from app.api.location.routes import router as location_router
+from app.api.district.routes import router as district_router
 from app.api.auth.routes import router as auth_router
 from app.api.prediction.routes import router as prediction_router
 
@@ -26,16 +28,10 @@ app.add_middleware(
 )
 
 
-app.include_router(
-    auth_router,
-    prefix="/api",
-)
-
-app.include_router(
-    prediction_router,
-    prefix="/api",
-)
-
+app.include_router(auth_router,prefix="/api",)
+app.include_router(prediction_router,prefix="/api",)
+app.include_router(location_router, prefix="/api")
+app.include_router(district_router, prefix="/api")
 
 @app.get("/")
 def root():

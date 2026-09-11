@@ -28,6 +28,12 @@ class Prediction(Base):
         index=True,
     )
 
+    location_id: Mapped[int] = mapped_column(
+        ForeignKey("locations.id"),
+        nullable=False,
+        index=True,
+    )
+
     rainfall_mm_hr: Mapped[float] = mapped_column(
         Float,
         nullable=False,
